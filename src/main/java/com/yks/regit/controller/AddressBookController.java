@@ -114,6 +114,7 @@ public class AddressBookController {
     @DeleteMapping
     public R<String> delete(Long ids){
         log.info("删除地址的id为：{}",ids);
+        //判断当前是否为空
         boolean b = addressBookService.removeById(ids);
         if (b){
             return R.success("删除地址成功");
