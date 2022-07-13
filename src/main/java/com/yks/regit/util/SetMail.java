@@ -1,3 +1,4 @@
+/*
 package com.yks.regit.util;
 
 import com.yks.regit.emtity.User;
@@ -23,7 +24,7 @@ public class SetMail {
     @Autowired
     RedisUtil redisUtil;
 
-    @Resource
+    @Autowired
     private JavaMailSender javaMailSender;
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -61,3 +62,4 @@ public class SetMail {
 
     }
 }
+*/
