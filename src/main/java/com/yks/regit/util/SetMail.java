@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
-@Configuration
+//@Configuration
 public class SetMail {
     @Autowired
     RedisTemplate redisTemplate;
