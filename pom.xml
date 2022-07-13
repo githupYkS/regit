@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<!--链接父工程，证明是springBoot项目-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -107,6 +108,25 @@
 			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
 			<version>2.2.1</version>
 		</dependency>
+
+		<!--jedis服务
+		&lt;!&ndash; https://mvnrepository.com/artifact/redis.clients/jedis &ndash;&gt;
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>4.2.3</version>
+		</dependency>-->
+
+
+
+		<!--redis服务-->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
 
 	</dependencies>
 
