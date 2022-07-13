@@ -45,10 +45,12 @@ public class RedisConig extends CachingConfigurerSupport{
 
     }*/
 
+    @Resource
+    RedisConnectionFactory connectionFactory;
     /*第二种方法*/
     // Spring中用于操作Redis工具类RedisTemplate 自定义 使用jackson序列化
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory connectionFactory){
+    public RedisTemplate<String,Object> redisTemplate(){
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
 
@@ -62,10 +64,13 @@ public class RedisConig extends CachingConfigurerSupport{
         jackson2JsonRedisSerializer.setObjectMapper(om);
         template.setConnectionFactory(connectionFactory);
 
-        //key序列化方式
+        //key序列化方式,默认的key序列化器为：jdkSerializationRedisSerializer
         template.setKeySerializer(redisSerializer);
         //value 序列化方式
         template.setValueSerializer(jackson2JsonRedisSerializer);
+
+        //反序列化对象
+        template.setConnectionFactory(connectionFactory);
         //value hashmap序列化
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
 
