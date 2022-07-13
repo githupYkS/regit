@@ -9,5 +9,4 @@ class RegitApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

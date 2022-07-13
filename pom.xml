@@ -102,6 +102,7 @@
 			<artifactId>aliyun-java-sdk-core</artifactId>
 			<version>4.6.0</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.aliyun/aliyun-java-sdk-dysmsapi -->
 		<dependency>
 			<groupId>com.aliyun</groupId>
@@ -117,8 +118,6 @@
 			<version>4.2.3</version>
 		</dependency>-->
 
-
-
 		<!--redis服务-->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
 		<dependency>
@@ -127,6 +126,11 @@
 			<version>2.7.1</version>
 		</dependency>
 
+		<!--需要引入最新的包，否则报错-->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+		</dependency>
 
 	</dependencies>
 
