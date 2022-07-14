@@ -3,12 +3,15 @@ package com.yks.regit.common;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
 @ToString
-public class R<T> {
+public class R<T> implements Serializable {
+
+
 
     private Integer code; //编码：1成功，0和其它数字为失败
 

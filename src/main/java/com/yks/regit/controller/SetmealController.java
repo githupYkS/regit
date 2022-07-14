@@ -12,6 +12,8 @@ import com.yks.regit.service.SetmealService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,11 +39,18 @@ public class SetmealController {
 
 
     /**
+     *CacheEvict：清理缓存数据
+     *value：缓存的名称，每个缓存名称下面可以有多个key
+     * key：缓存的key
+     * allEntries:清理setmeal下面的所有的缓存
+     */
+    /**
      * 新增套餐
      * @param setmealDto
      * @return
      */
     @PostMapping
+    @CacheEvict(value = "setmeal",allEntries = true)
     public R<String> save(@RequestBody SetmealDto setmealDto){
         log.info("套餐信息：{}",setmealDto);
         //新增套餐数据
@@ -49,7 +58,15 @@ public class SetmealController {
         return R.success("新增套餐数据成功");
     }
 
+    /**
+     * 分页查询数据
+     * @param page
+     * @param pageSize
+     * @param name
+     * @return
+     */
     @GetMapping("/page")
+    @Cacheable(value = "setmeal",key = "#setmeal.categoryId+'_'+#setmeal.status")
     public R<Page> page(int page,int pageSize,String name){
         //分页构造器对象
         Page<Setmeal> pageInfo = new Page<>(page,pageSize);
@@ -87,12 +104,20 @@ public class SetmealController {
         return R.success(dtoPage);
     }
 
+
+    /**
+     *CacheEvict：清理缓存数据
+     *value：缓存的名称，每个缓存名称下面可以有多个key
+     * key：缓存的key
+     * allEntries:清理setmeal下面的所有的缓存
+     */
     /**
      * 删除套餐
      * @param ids
      * @return
      */
     @DeleteMapping
+    @CacheEvict(value = "setmeal",allEntries = true)
     public R<String> delete(@RequestParam List<Long> ids){
         log.info("ids:{}",ids);
         setmealService.removeWithDish(ids);
@@ -100,9 +125,15 @@ public class SetmealController {
     }
 
     /**
+     *Cacheable：在方法执行前Spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据，若没有数据，调用方法，并将方法放入缓存中
+     *value：缓存的名称，每个缓存名称下面可以有多个key
+     * key：缓存的key
+     */
+    /**
      * 根据条件查询套餐数据
      * @return
      */
+    @Cacheable(value = "setmeal",key = "#setmeal.categoryId+'_'+#setmeal.status")
     @GetMapping("/list")
     public R<List<Setmeal>> list(Setmeal setmeal){
         //构造查询条件
