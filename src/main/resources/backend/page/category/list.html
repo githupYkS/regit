@@ -150,12 +150,13 @@
     <script>
       new Vue({
         el: '#category-app',
+        //数据
         data() {
           return {
             action: '',
             counts: 0,
             page: 1,
-            pageSize: 10,
+            pageSize: 5,
             tableData: [],
             type :'',
             classData: {
@@ -167,12 +168,14 @@
             }
           }
         },
+        //计算属性
         computed: {},
         created() {
           this.init()
         },
         mounted() {
         },
+        //方法
         methods: {
           async init () {
             await getCategoryPage({'page': this.page, 'pageSize': this.pageSize}).then(res => {

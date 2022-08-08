@@ -145,7 +145,6 @@ public class SetmealController {
         queryWrapper.orderByDesc(Setmeal::getUpdateTime);
         //进行查询
         List<Setmeal> list = setmealService.list(queryWrapper);
-
         return R.success(list);
     }
 }
